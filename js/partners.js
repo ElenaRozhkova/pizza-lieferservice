@@ -1,3 +1,5 @@
+const partners=()=>{
+
 const cardRestaurant=document.querySelector('.cards-restaurants');
 
 const renderItems=(data)=>{
@@ -43,3 +45,7 @@ fetch('https://lieferservice-c430a-default-rtdb.firebaseio.com/db/partners.json'
     renderItems(data)
 })
 .catch((err)=>{console.log(err)})
+
+}
+
+partners();

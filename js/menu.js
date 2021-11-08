@@ -1,6 +1,7 @@
 
-const restaurant=JSON.parse(localStorage.getItem('restaurantname'));
+const menu =()=>{
 
+const restaurant=JSON.parse(localStorage.getItem('restaurantname'));
 const cardsMenu =document.querySelector('.cards-menu');
 
 const changeTitle=(restaurant)=>{
@@ -15,9 +16,22 @@ price.textContent=`Price von ${restaurant.price} rub`;
 
 const category=document.querySelector('.category');
 category.textContent=restaurant.kitchen;
-
-
 }
+
+
+const cartArray =  localStorage.getItem('cartinCorb') ?
+JSON.parse(localStorage.getItem('cartinCorb')) : [];
+
+const addCard=(cart)=>{
+    if (cartArray.some(item=>item.id===cart.id)) {
+        cartArray.map(index=>{
+            if (index.id===cart.id) {index.count++} 
+            return index
+        })
+    } else 
+    cartArray.push(cart);
+    localStorage.setItem('cartinCorb',JSON.stringify(cartArray));
+ }
 
 const renderItems=(data)=>{
 
@@ -45,6 +59,10 @@ const renderItems=(data)=>{
             </div>
         `;
         
+        card.querySelector('.button-card-text').addEventListener('click', ()=>{
+            addCard ({name, price, id, count:1});
+        });
+
         cardsMenu.append(card);    
     });
 
@@ -61,3 +79,7 @@ if (restaurant) {
 } else {
     window.location.href='/';
 }
+
+}
+
+menu();
