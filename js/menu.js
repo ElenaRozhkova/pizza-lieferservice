@@ -19,17 +19,17 @@ category.textContent=restaurant.kitchen;
 }
 
 
-const cartArray =  localStorage.getItem('cartinCorb') ?
-JSON.parse(localStorage.getItem('cartinCorb')) : [];
-
 const addCard=(cart)=>{
+    const cartArray =  localStorage.getItem('cartinCorb') ?
+    JSON.parse(localStorage.getItem('cartinCorb')) : [];
     if (cartArray.some(item=>item.id===cart.id)) {
         cartArray.map(index=>{
             if (index.id===cart.id) {index.count++} 
             return index
         })
     } else 
-    cartArray.push(cart);
+    {cartArray.push(cart);}
+
     localStorage.setItem('cartinCorb',JSON.stringify(cartArray));
  }
 

@@ -4,11 +4,14 @@ const cart= ()=>{
     const close= modalCart.querySelector('.close');
     const modalBody = modalCart.querySelector('.modal-body');
     const buttonSend =modalCart.querySelector('.button-primary');
-
+    const summePrice = modalCart.querySelector('.modal-pricetag');
+    
     const resetCart=()=>{
         modalBody.innerHTML='';
-        localStorage.removeItem('cartinCorb');
         modalCart.classList.remove('is-open');
+        summePrice.innerHTML='';
+        summePrice.classList.remove('modal-pricetag');
+        localStorage.removeItem('cartinCorb');
     }
     const decrementCount =(id)=>{
         const card =JSON.parse(localStorage.getItem('cartinCorb'));
@@ -34,7 +37,6 @@ const cart= ()=>{
         modalBody.innerHTML='';
        
         data.forEach(({name, price, id, count}) => {
-            console.log(id);
             const cartCorb = document.createElement('div');
             cartCorb.classList.add('food-row');
             cartCorb.innerHTML=`					
@@ -47,6 +49,12 @@ const cart= ()=>{
             </div>`;
             modalBody.append(cartCorb);
         });
+
+        const sum= data.reduce(function(prev, curr) {
+            return prev+curr.price*curr.count;
+          }, 0);
+          summePrice.classList.add('modal-pricetag');
+          summePrice.innerHTML=sum;
     }
 
 
