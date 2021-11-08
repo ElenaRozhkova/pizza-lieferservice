@@ -1,0 +1,10 @@
+{
+    "tags": [
+        "swiper"
+    ],
+    "name": "Swiper - Pagination",
+    "dependencies": {
+        "parcel-bundler": "^1.6.1",
+        "swiper": "^7.2.0"
+    }
+}
